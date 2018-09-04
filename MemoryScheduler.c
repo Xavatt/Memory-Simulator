@@ -77,10 +77,40 @@ int getTLB(int tlb[][3], int size)
 
 int main(int argc, char const *argv[])
 {
-    int tmen,ttlb,tfault;   /* Memory Access Time, TLB Access Time, Page Fault Time */
+    int tmem,ttlb,tfault;   /* Memory Access Time, TLB Access Time, Page Fault Time */
     FILE *fp;               /* Pointer to the file */
     int address;            /* Numeric value of the logical address */
     char operation;         /* Operation to be done (W or R) */
     char caddress[LOGADD]   /* Binary representation of the logical address */
-    
+
+    /* Check if the number of parameters is correct */
+    if(argc < NUMARAMS)
+    {
+        printf("Need a file with the process information\n");
+        printf("Abnormal termination\n");
+        return (EXIT_FAILURE);
+    }
+    else
+    {
+        /* Open the file and check that it exist */
+        fp = fopen(argv[1],"r");    /* Open the file for read operation */
+        if (!fp)                    /* There is an error */
+        {
+            printf("%s\n","ERROR 404 (FILE NOT FOUND)")
+            return EXIT_FAILURE;
+        }
+        else
+        {
+            /* Read the times from the file */
+            tmem = GetInt(fp);
+            ttlb = GetInt(fp);
+            tfault = GetInt(fp);
+
+            if(tmem == EXIT_FAILURE || ttlb == EXIT_FAILURE || tfault == EXIT_FAILURE) /* We check to see if we read succesfully the three times */
+            {
+                printf("%s\n", "ERROR 404 (TIME NOT FOUND)"); /* In case of error we notify the user and terminate the program */
+                return EXIT_FAILURE;
+            }
+        }
+    }
 }
