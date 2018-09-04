@@ -155,6 +155,20 @@ int main(int argc, char const *argv[])
                     tlb[i][1]= 0;
                     tlb[i][2]= 0;
                 }
+                while(!feof(fp))
+                {
+                    /* Write the eof isn't reached */
+                    fscanf(fp," %x %c ",&address,&operation); /* Address and Operation are read */
+                    
+                    if(feof(fp)) /* If end of the file we break */
+                    {
+                        break;
+                    }
+                    pageEntry= 0;        /* Page Entry is reset */
+                    accessTime= 0;       /* Access Time is reset */
+                    frameN= 0;           /* Frame Number is reset */
+                    n = address;         /* Numeric value is passed to n */
+                }
             }
         }
     }
