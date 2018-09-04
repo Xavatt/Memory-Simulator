@@ -135,6 +135,26 @@ int main(int argc, char const *argv[])
                 int hits = 0;                                    /* Hits stores the number of TLB hits we have */
                 int pageOut = 0, pageIn = 0;                     /* Page outs into disk and page ins from disk */
                 int found;                                       /* Bool variable that is set to 1 if found */
+
+                for(i=0;i<pageSize;i++) /* We set the page table to neutral values */
+                {
+                    pageTable[i][0]= 0;
+                    pageTable[i][1]= 0;
+                }
+                
+                for(i=0;i<frameSize;i++) /* We set the frame table to neutral values */
+                {
+                    frame[i][0]= 0;
+                    frame[i][1]= 0;
+                    frame[i][2]= 0;
+                }
+
+                for(i=0;i<TLBSIZE;i++) /* We set the TLB to neutral values */
+                {
+                    tlb[i][0]= 0;
+                    tlb[i][1]= 0;
+                    tlb[i][2]= 0;
+                }
             }
         }
     }
