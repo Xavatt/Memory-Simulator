@@ -126,6 +126,15 @@ int main(int argc, char const *argv[])
                 printf("%d Frame Entries\n ", temp);
                 printf("%d TLB Entries\n ", TLBSIZE);
                 #endif
+
+                int tlb[TLBSIZE][3];                             /* TLB is declared with three int spaces, one for page entry, second for the frame and third for the LRU time */
+                int rem,n,i;                                     /* Rem is the remainder used to convert to binary, n stores numeric value of the address and i is used for 'fors' */
+                int frameN,tlbn,pageEntry,smallest;              /* Frame number, TLB number, Page Entry and Smallest LRU time */
+                double accessTime,sum;                           /* Access Time of the current memory request and the sum of all the access time of memories request */
+                int counter = 1;                                 /* Counter serves as a time counter */
+                int hits = 0;                                    /* Hits stores the number of TLB hits we have */
+                int pageOut = 0, pageIn = 0;                     /* Page outs into disk and page ins from disk */
+                int found;                                       /* Bool variable that is set to 1 if found */
             }
         }
     }
