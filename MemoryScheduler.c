@@ -70,3 +70,7 @@ int getTLB(int tlb[][3], int size)
     }
     return tlbn; /* Return the index of the lowest LRU in the TLB */
 }
+
+/********************************************************
+ *                  Main Entry Point                    *
+ ********************************************************/
