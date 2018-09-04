@@ -50,3 +50,23 @@ int GetInt(FILE *fp)
     }
 }
 
+/* Get the smallest LRU time from an array passed as parameter and the size of said parameter */
+int getTLB(int tlb[][3], int size)
+{
+    int i,tlbn;
+    int smallest=tlb[0][2]; /* Get the first LRU from the first entry in the TLB */
+    for(i=0;i<size;i++)     /* The array is searched for lower LRU or LRU of zero */
+    {
+        if(tlb[i][2]==0)
+        {
+            tlbn = i;
+            break;
+        }
+        if(tlb[i][2]<smallest)
+        {
+            smallest = tlb[i][2];
+            tlbn = i;
+        }
+    }
+    return tlbn; /* Return the index of the lowest LRU in the TLB */
+}
