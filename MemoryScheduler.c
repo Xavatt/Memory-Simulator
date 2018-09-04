@@ -74,3 +74,13 @@ int getTLB(int tlb[][3], int size)
 /********************************************************
  *                  Main Entry Point                    *
  ********************************************************/
+
+int main(int argc, char const *argv[])
+{
+    int tmen,ttlb,tfault;   /* Memory Access Time, TLB Access Time, Page Fault Time */
+    FILE *fp;               /* Pointer to the file */
+    int address;            /* Numeric value of the logical address */
+    char operation;         /* Operation to be done (W or R) */
+    char caddress[LOGADD]   /* Binary representation of the logical address */
+    
+}
