@@ -81,7 +81,7 @@ int main(int argc, char const *argv[])
     FILE *fp;               /* Pointer to the file */
     int address;            /* Numeric value of the logical address */
     char operation;         /* Operation to be done (W or R) */
-    char caddress[LOGADD]   /* Binary representation of the logical address */
+    char caddress[LOGADD];   /* Binary representation of the logical address */
 
     /* Check if the number of parameters is correct */
     if(argc < NUMARAMS)
@@ -96,7 +96,7 @@ int main(int argc, char const *argv[])
         fp = fopen(argv[1],"r");    /* Open the file for read operation */
         if (!fp)                    /* There is an error */
         {
-            printf("%s\n","ERROR 404 (FILE NOT FOUND)")
+            printf("%s\n","ERROR 404 (FILE NOT FOUND)");
             return EXIT_FAILURE;
         }
         else
@@ -113,10 +113,19 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                int pageSize,frameSize; /* Variables declared that will hold the page and frame size or spaces */
-                pageSize = pow(2,LOGADD-OFFSET); /* Page size is calculated */
-                int pageTable[pageSize][2]; /*  */
-                frameSize = pow(2,PHYADD-OFFSET); /*  */
+                int pageSize,frameSize;                 /* Variables declared that will hold the page and frame size or spaces */
+                pageSize = pow(2,LOGADD-OFFSET);        /* Page size is calculated */
+                int pageTable[pageSize][2];             /* Array is declared with the age size and 2 int spaces, one for the frame and the second for validity */
+                frameSize = pow(2,PHYADD-OFFSET);       /* Frame size is calculated */
+                int frame[frameSize][3];                /* Array is declared with the frame size and 3 int spaces */
+                                                        /* One is for the page entry, the second as a dirty bit, the third for the LRU time */
+
+                #ifdef DEBUG
+                /* In debug mode the number of entries is printed */                                        
+                printf("%d Page Entries\n ", temp);
+                printf("%d Frame Entries\n ", temp);
+                printf("%d TLB Entries\n ", TLBSIZE);
+                #endif
             }
         }
     }
