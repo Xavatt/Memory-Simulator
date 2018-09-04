@@ -111,6 +111,13 @@ int main(int argc, char const *argv[])
                 printf("%s\n", "ERROR 404 (TIME NOT FOUND)"); /* In case of error we notify the user and terminate the program */
                 return EXIT_FAILURE;
             }
+            else
+            {
+                int pageSize,frameSize; /* Variables declared that will hold the page and frame size or spaces */
+                pageSize = pow(2,LOGADD-OFFSET); /* Page size is calculated */
+                int pageTable[pageSize][2]; /*  */
+                frameSize = pow(2,PHYADD-OFFSET); /*  */
+            }
         }
     }
 }
