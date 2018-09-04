@@ -32,4 +32,21 @@ int GetInt(FILE *fp)
            }
         }
     }while (!isdigit(c) && !feof(fp));
+
+    if(feof(fp))
+    {
+        return (EXIT_FAILURE);
+    }
+    else
+    {
+        /* Found 1st digit, begin coversion until a non-digit is found */
+        i = 0;
+        while(isdigit(c) && !feof(fp))
+        {
+            i = (i*10) + (c - '0');
+            c = getc(fp);
+        }
+        return (i*sign);
+    }
 }
+
