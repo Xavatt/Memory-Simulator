@@ -168,6 +168,19 @@ int main(int argc, char const *argv[])
                     accessTime= 0;       /* Access Time is reset */
                     frameN= 0;           /* Frame Number is reset */
                     n = address;         /* Numeric value is passed to n */
+
+                    for(i = LOGADD;i>0;i--) /* We convert the address read to a String representation binary */
+                    {
+                        rem = n%2;
+                        if(rem == 1)
+                        {
+                            caddress[i-1] = '1';
+                        }
+                        else
+                        {
+                            caddress[i-1] = '0';
+                        }
+                    }
                 }
             }
         }
