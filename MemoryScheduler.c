@@ -218,6 +218,39 @@ int main(int argc, char const *argv[])
                             tlb[tlbn][1] = frameN;
                             tlb[tlbn][2] = counter;
                         }
+                        else
+                        {
+                            accessTime += tfault; /* No valid frame found so we add the Page Faul time */
+                            smallest = counter; /* We look for the frame with the smallest LRU time or with a time of 0 */
+                            for(i=0;i<frameSize;i++)
+                            {
+                                if(frame[i][2] == 0)
+                                {
+                                    frameN = i;
+                                    break;
+                                }
+                                if(frame[i][2]<smallest)
+                                {
+                                    smallest = frame[i][2];
+                                    frameN;
+                                }
+                            }
+                            if(frame[frameN][1] == 1) /* In case the frame is dirty we do a page out */
+                            {
+                                accessTime += tfault;
+                                pageOut++;
+                            }
+                            pageIn++;                                       /* Page Ins is incremented */
+                            pageTable[frame[frameN][0]][1] = 0;             /* We set the old page entry to invalid */
+                            frame[frameN][0] = pageEntry;                   /* The new page is set to the frame */
+                            frame[frameN][1] = 0;                           /* The dirty bit is set to 0 */
+                            pageTable[pageEntry][0] = frameN;               /* The page table is updated with the new frame */
+                            pageTable[pageEntry][1] = 1;                    /* The page table is updated with a valid bit */
+                            tlbn = getTLB(tlb,TLBSIZE);                     /* We update the TLB table with the new page/frame entry */
+                            tlb[tlbn][0] = pageEntry;
+                            tlb[tlbn][1] = frameN;
+                            tlb[tlbn][2] = counter;
+                        }
                     }
                 }
             }
