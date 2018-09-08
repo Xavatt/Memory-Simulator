@@ -268,6 +268,16 @@ int main(int argc, char const *argv[])
                         printf("Page Entry: %d\n",pageEntry);
                     #endif
                 }
+                #ifdef DEBUG                            /* Final frame and TLB state is printed */
+                    for(i=0;i<frameSize;i++)
+                    {
+                        printf("Page: %d LRU: %d Dirty: %d\n",frame[i][0], frame[i][2], frame[i][1]);
+                    }
+                    for(i=0;i<TLBSIZE;i++)
+                    {
+                        printf("Page: %d Frame: %d LRU: %d\n",frame[i][0], frame[i][1], frame[i][2]);
+                    }
+                #endif
             }
         }
     }
