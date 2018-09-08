@@ -278,6 +278,13 @@ int main(int argc, char const *argv[])
                         printf("Page: %d Frame: %d LRU: %d\n",frame[i][0], frame[i][1], frame[i][2]);
                     }
                 #endif
+                counter--; /* Counter has one more than actual events so we subtract one */
+                /* The information required is displayed */
+                printf("Number of events: %d\n",counter);
+                printf("Page in: %d\n",pageIn);
+                printf("Page out: %d\n",pageOut);
+                printf("Avg: %f\n",sum/(double)counter);
+                printf("Hit Ratio: %f\n",(float)hits/(counter));
             }
         }
     }
