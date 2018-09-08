@@ -287,5 +287,8 @@ int main(int argc, char const *argv[])
                 printf("Hit Ratio: %f\n",(float)hits/(counter));
             }
         }
+        /* Program terminated Succesfully */
+        printf("Program Terminated Correctly\n");
+        return(EXIT_SUCCESS);
     }
 }
