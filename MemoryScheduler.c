@@ -205,6 +205,20 @@ int main(int argc, char const *argv[])
                         }
                     }
                     accessTime += ttlb; /* TLB accessed so we add the TLB access time */
+
+                    if(found == 0) /* In case it wasn't found in the TLB */
+                    {
+                        accessTime += tmem; /* Page Table is accessed so we add the Page Table access time */
+
+                        if(pageTable[pageEntry][1] == 1) /* If the Page Table has a valid entry we get the frame registered with the entry and set a new TLB entry */
+                        {
+                            frameN = pageTable[pageEntry][0];
+                            tlbn = getTLB(tlb,TLBSIZE);
+                            tlb[tlbn][0] = pageEntry;
+                            tlb[tlbn][1] = frameN;
+                            tlb[tlbn][2] = counter;
+                        }
+                    }
                 }
             }
         }
