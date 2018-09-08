@@ -181,6 +181,30 @@ int main(int argc, char const *argv[])
                             caddress[i-1] = '0';
                         }
                     }
+
+                    for(i = LOGADD-OFFSET;i>0;i--) /* The page entry is calculated based on the conversion made before */
+                    {
+                        int num = LOGADD-OFFSET-i;
+                        if(caddress[i-1] == '1')
+                        {
+                            pageEntry = pageEntry + pow(2,num);
+                        }
+                    }
+                    
+                    found = 0; /* Found is set to false */
+
+                    for(i=0;i<TLBSIZE;i++) /* TLB is scanned for the page entry */
+                    {
+                        if(tlb[i][0] == pageEntry) /* If we have a hit we increase the counter, set new LRU and get the Frame registered with the page */
+                        {
+                            hits++;
+                            frameN = tlb[i][1];
+                            tlb[i][2] = counter;
+                            found = 1;
+                            break;
+                        }
+                    }
+                    accessTime += ttlb; /* TLB accessed so we add the TLB access time */
                 }
             }
         }
