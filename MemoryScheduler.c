@@ -252,6 +252,21 @@ int main(int argc, char const *argv[])
                             tlb[tlbn][2] = counter;
                         }
                     }
+                    if(operation == 'W') /* In case the operation is a Wtrite we set the bit to dirty */
+                    {
+                        frame[frameN][1] = 1;
+                    }
+
+                    frame[frameN][2] = counter;         /* The LRU time for the frame is set */
+                    counter++;                          /* Counter is incrased */ 
+                    sum += accessTime;                  /* The total access time of all the request is updated */
+
+                    #ifdef DEBUG                        /* Information about the Memory Request is printed */
+                        printf("Number: &d\n",address);
+                        printf("Operation: %c\n",operation);
+                        printf("Binary: %s\n",caddress);
+                        printf("Page Entry: %d\n",pageEntry);
+                    #endif
                 }
             }
         }
