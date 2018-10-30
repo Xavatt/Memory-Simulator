@@ -30,3 +30,5 @@ new frame is loaded into memory from disk, and the page table is updated.
 
 Our program will take as input a text file with an **arbitrary** number of memory references.
 The first line in the file has the main memory access time (**tmem**), the TLB access time (**ttlb**), and the page fault penalty (tfault). All times are in nano seconds. After the first line, each line will have a 16-bit address followed by the access type (read or write). As an example consider the following four memory references:
+
+![captura](https://user-images.githubusercontent.com/15019106/47720961-b477b200-dc14-11e8-9851-51961227f93f.PNG)
