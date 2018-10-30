@@ -32,3 +32,23 @@ Our program will take as input a text file with an **arbitrary** number of memor
 The first line in the file has the main memory access time (**tmem**), the TLB access time (**ttlb**), and the page fault penalty (tfault). All times are in nano seconds. After the first line, each line will have a 16-bit address followed by the access type (read or write). As an example consider the following four memory references:
 
 ![captura](https://user-images.githubusercontent.com/15019106/47720961-b477b200-dc14-11e8-9851-51961227f93f.PNG)
+
+Note that our program should read three positive integers followed by a newline character
+and then for each line we should read a 16-bit address followed by a space and then the
+access type which is either **R** (read) or **W** (write).
+
+The trace file that will be provided for us has 1,000,000 virtual memory references and for
+each reference you must perform the translation from virtual to physical memory and
+depending on whether the reference is in the TLB or the page table we will keep track of the
+average access time for each reference.
+
+Note that when you are evicting an entry in the TLB or from a frame in memory you need to
+check if the entry is dirty (i.e. the reference was a **write**). If it’s **dirty** you need to simulate a memory **write** (writes the dirty page into disk), followed by a memory **read** (reads the new page from disk into memory). Note that the TLB has a subset of the memory references contained in the frame table, simplifying your coding significantly.
+
+## EXPECTED OUTPUTS
+
+The simulator reports the TLB hit rate, the page faults in the form of disk reads and writes,
+total number of memory frames used, and the average access time for the entire trace. Note
+that the final trace is over 1,000,000 entries long so you will be provided with a smaller trace for testing purposes.
+
+# PROPOSED SOLUTION
