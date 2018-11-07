@@ -233,7 +233,7 @@ int main(int argc, char const *argv[])
                                 if (frame[i][2] < smallest)
                                 {
                                     smallest = frame[i][2];
-                                    frameN;
+                                    frameN = i;
                                 }
                             }
                             if (frame[frameN][1] == 1) /* In case the frame is dirty we do a page out */
@@ -282,10 +282,10 @@ int main(int argc, char const *argv[])
                 counter--; /* Counter has one more than actual events so we subtract one */
                 /* The information required is displayed */
                 printf("Number of events: %d\n", counter);
+                printf("Average Acces Time: %f\n", sum / (double)counter);
                 printf("Page in: %d\n", pageIn);
-                printf("Page out: %d\n", pageOut);
-                printf("Avg: %f\n", sum / (double)counter);
-                printf("Hit Ratio: %f\n", (float)hits / (counter));
+                printf("Page out: %d\n", pageOut);                
+                printf("TLB Hit Ratio: %f\n", (float)hits / (counter));
             }
         }
         /* Program terminated Succesfully */
