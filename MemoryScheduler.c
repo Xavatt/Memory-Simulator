@@ -39,7 +39,7 @@ int GetInt(FILE *fp)
     }
     else
     {
-        /* Found 1st digit, begin coversion until a non-digit is found */
+        /* Found 1st digit */
         i = 0;
         while (isdigit(c) && !feof(fp))
         {
@@ -50,7 +50,7 @@ int GetInt(FILE *fp)
     }
 }
 
-/* Get the smallest LRU time from an array passed as parameter and the size of said parameter */
+/* Get the smallest LRU time from an array passed as parameter */
 int getTLB(int tlb[][3], int size)
 {
     int i, tlbn;
@@ -151,7 +151,7 @@ int main(int argc, char const *argv[])
 
                 for (i = 0; i < TLBSIZE; i++) /* We set the TLB to neutral values */
                 {
-                    tlb[i][0] = 0;
+                    tlb[i][0] = 1;
                     tlb[i][1] = 0;
                     tlb[i][2] = 0;
                 }
@@ -172,6 +172,7 @@ int main(int argc, char const *argv[])
                     for (i = LOGADD; i > 0; i--) /* We convert the address read to a String representation binary */
                     {
                         rem = n % 2;
+                        n = n/2;
                         if (rem == 1)
                         {
                             caddress[i - 1] = '1';
