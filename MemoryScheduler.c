@@ -75,7 +75,7 @@ int getTLB(int tlb[][3], int size)
  *                  Main Entry Point                    *
  ********************************************************/
 
-int main(int argc, char const *argv[])
+int main(int argc, const char *argv[])
 {
     int tmem, ttlb, tfault; /* Memory Access Time, TLB Access Time, Page Fault Time */
     FILE *fp;               /* Pointer to the file */
@@ -276,7 +276,7 @@ int main(int argc, char const *argv[])
                 }
                 for (i = 0; i < TLBSIZE; i++)
                 {
-                    printf("Page: %d Frame: %d LRU: %d\n", frame[i][0], frame[i][1], frame[i][2]);
+                    printf("Page: %d Frame: %d LRU: %d\n", tlb[i][0], tlb[i][1], tlbi][2]);
                 }
 #endif
                 counter--; /* Counter has one more than actual events so we subtract one */
