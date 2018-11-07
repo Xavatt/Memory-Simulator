@@ -151,7 +151,7 @@ int main(int argc, char const *argv[])
 
                 for (i = 0; i < TLBSIZE; i++) /* We set the TLB to neutral values */
                 {
-                    tlb[i][0] = 1;
+                    tlb[i][0] = -1;
                     tlb[i][1] = 0;
                     tlb[i][2] = 0;
                 }
