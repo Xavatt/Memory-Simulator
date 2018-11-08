@@ -8,7 +8,7 @@ The goal of this project is to implement a simulator for virtual memory manager.
 
 To verify you read all events in the trace it ir recommended that you also keep tract of the total number of events(memory accesses) in the trace.
 
----
+
 
 ## GOALS
 
@@ -52,3 +52,38 @@ total number of memory frames used, and the average access time for the entire t
 that the final trace is over 1,000,000 entries long so you will be provided with a smaller trace for testing purposes.
 
 # PROPOSED SOLUTION
+
+Taking knowledge of the topics of the class, We use some part of code from the previous project (Scheduler) to skip the comments at the moment of reading the file for the test. The txt file does not contain the character ‘#’ that is the one that we skip but to take order we implement it. In the project we use some condition at the moment of reading the file, for example when the file does not exist and in case that the file exist the program verify two more condition that are ‘W’ for write and ‘R’ for read.
+
+We make use of arrays because it make more easy to manage the information that we required. First we define the size of the global constant for the logical address, physical address, offset, TLB and the number of parameters we receive. The we get the lowest LRU in the TLB also we check if the number of parameters is correct in case that this is true. We set the values from the tables (page table, frame table, TLB) to neutrals.
+
+Then we start to make the calculation needed for the purpose of this project taking the previous info with the respective calculations. For every process finish we reset all the value to move to the next one until all the process were read. At the final we print all the information recopilated in the process (Number of events, Page in, Page out, Average time, TLB hit ratio).
+
+
+## How To Build Executable Of The Program
+
+Using a Linux environment of **64-bits**, to build the executable of the program is required the ise of the terminal, also called *command line*.
+
+### The prerequisites are:
+
+**1. Install C/C++ compiler and related tools**
+
+Though these are already installed as gcc (GNU Compiler Collection), it is not bad to update it and verify it is installed.
+
+You can use the following commands to check the updates:
+
+    - $ sudo apt-get update
+    - $ sudo apt-get install build-essential manpages-dev
+    
+Finally, **To compile** the executable Schedler the following command is required:
+
+    - gcc MemoryScheduler.c -o memory -lm
+ 
+ To run the executable just created, the next command is applied:
+    
+    - Directory/folder$ ./memory test.txt
+
+**Here are a ScreenShoot to make it more visible.**
+
+![imagen](https://user-images.githubusercontent.com/15019106/48210478-fdc6b080-e33c-11e8-85af-3df1aed800e7.png)
+
