@@ -10,7 +10,7 @@
 #define PHYADD 13  /* Constant used to define the physical address space */
 #define OFFSET 9   /* Constant used to define the offset used */
 #define TLBSIZE 8  /* Constant for the TLB size */
-#define NUMARAMS 2 /* Constant used to define the number of parameters we must receive */
+#define NUMPARAMS 2 /* Constant used to define the number of parameters we must receive */
 
 /* Used to get a number from a file passed as a parameter */
 int GetInt(FILE *fp)
@@ -84,7 +84,7 @@ int main(int argc, const char *argv[])
     char caddress[LOGADD];  /* Binary representation of the logical address */
 
     /* Check if the number of parameters is correct */
-    if (argc < NUMARAMS)
+    if (argc < NUMPARAMS)
     {
         printf("Need a file with the process information\n");
         printf("Abnormal termination\n");
@@ -113,10 +113,10 @@ int main(int argc, const char *argv[])
             }
             else
             {
-                int pageSize, frameSize;             /* Variables declared that will hold the page and frame size or spaces */
-                pageSize = pow(2, LOGADD - OFFSET);  /* Page size is calculated */
-                int pageTable[pageSize][2];          /* Array is declared with the age size and 2 int spaces, one for the frame and the second for validity */
-                frameSize = pow(2, PHYADD - OFFSET); /* Frame size is calculated */
+                int pageSize,frameSize;              /* Variables declared that will hold the page and frame size or spaces */
+                pageSize = pow(2,LOGADD-OFFSET);     /* Page size is calculated */
+                int pageTable[pageSize][2];          /* Array is declared with the page size and 2 int spaces, one for the frame and the second for validity */
+                frameSize = pow(2,PHYADD-OFFSET);    /* Frame size is calculated */
                 int frame[frameSize][3];             /* Array is declared with the frame size and 3 int spaces */
                                                      /* One is for the page entry, the second as a dirty bit, the third for the LRU time */
 
@@ -136,29 +136,29 @@ int main(int argc, const char *argv[])
                 int pageOut = 0, pageIn = 0;           /* Page outs into disk and page ins from disk */
                 int found;                             /* Bool variable that is set to 1 if found */
 
-                for (i = 0; i < pageSize; i++) /* We set the page table to neutral values */
+                for(i=0;i<pageSize;i++) /* We set the page table to neutral values */
                 {
                     pageTable[i][0] = 0;
                     pageTable[i][1] = 0;
                 }
 
-                for (i = 0; i < frameSize; i++) /* We set the frame table to neutral values */
+                for(i=0;i<frameSize;i++) /* We set the frame table to neutral values */
                 {
-                    frame[i][0] = 0;
-                    frame[i][1] = 0;
-                    frame[i][2] = 0;
+                    frame[i][0]=0;
+                    frame[i][1]=0;
+                    frame[i][2]=0;
                 }
 
-                for (i = 0; i < TLBSIZE; i++) /* We set the TLB to neutral values */
+                for(i=0;i<TLBSIZE;i++) /* We set the TLB to neutral values */
                 {
-                    tlb[i][0] = -1;
-                    tlb[i][1] = 0;
-                    tlb[i][2] = 0;
+                   tlb[i][0]= -1;
+                    tlb[i][1]=0;
+                    tlb[i][2]=0;
                 }
                 while (!feof(fp))
                 {
                     /* Write the eof isn't reached */
-                    fscanf(fp, " %x %c ", &address, &operation); /* Address and Operation are read */
+                    fscanf(fp,"%x %c",&address,&operation); /* Address and Operation are read */
 
                     if (feof(fp)) /* If end of the file we break */
                     {
@@ -169,39 +169,39 @@ int main(int argc, const char *argv[])
                     frameN = 0;     /* Frame Number is reset */
                     n = address;    /* Numeric value is passed to n */
 
-                    for (i = LOGADD; i > 0; i--) /* We convert the address read to a String representation binary */
+                    for(i = LOGADD;i>0;i--) /* We convert the address read to a String representation binary */
                     {
-                        rem = n % 2;
+                        rem = n%2;
                         n = n/2;
-                        if (rem == 1)
+                        if(rem == 1)
                         {
-                            caddress[i - 1] = '1';
+                            caddress[i-1]='1';
                         }
                         else
                         {
-                            caddress[i - 1] = '0';
+                            caddress[i-1]='0';
                         }
                     }
 
-                    for (i = LOGADD - OFFSET; i > 0; i--) /* The page entry is calculated based on the conversion made before */
+                    for(i = LOGADD-OFFSET;i>0;i--) /* The page entry is calculated based on the conversion made before */
                     {
-                        int num = LOGADD - OFFSET - i;
-                        if (caddress[i - 1] == '1')
+                        int num = LOGADD-OFFSET-i;
+                        if(caddress[i-1] == '1')
                         {
-                            pageEntry = pageEntry + pow(2, num);
+                            pageEntry=pageEntry+ pow(2,num);
                         }
                     }
 
                     found = 0; /* Found is set to false */
 
-                    for (i = 0; i < TLBSIZE; i++) /* TLB is scanned for the page entry */
+                    for(i=0;i<TLBSIZE;i++) /* TLB is scanned for the page entry */
                     {
-                        if (tlb[i][0] == pageEntry) /* If we have a hit we increase the counter, set new LRU and get the Frame registered with the page */
+                        if(tlb[i][0]==pageEntry) /* If we have a hit we increase the counter, set new LRU and get the Frame registered with the page */
                         {
                             hits++;
                             frameN = tlb[i][1];
-                            tlb[i][2] = counter;
-                            found = 1;
+                            tlb[i][2]=counter;
+                            found=1;
                             break;
                         }
                     }
@@ -211,19 +211,19 @@ int main(int argc, const char *argv[])
                     {
                         accessTime += tmem; /* Page Table is accessed so we add the Page Table access time */
 
-                        if (pageTable[pageEntry][1] == 1) /* If the Page Table has a valid entry we get the frame registered with the entry and set a new TLB entry */
+                        if(pageTable[pageEntry][1]==1) /* If the Page Table has a valid entry we get the frame registered with the entry and set a new TLB entry */
                         {
-                            frameN = pageTable[pageEntry][0];
-                            tlbn = getTLB(tlb, TLBSIZE);
-                            tlb[tlbn][0] = pageEntry;
-                            tlb[tlbn][1] = frameN;
-                            tlb[tlbn][2] = counter;
+                            frameN=pageTable[pageEntry][0];
+                            tlbn=getTLB(tlb,TLBSIZE);
+                            tlb[tlbn][0]=pageEntry;
+                            tlb[tlbn][1]=frameN;
+                            tlb[tlbn][2]=counter;
                         }
                         else
                         {
                             accessTime += tfault; /* No valid frame found so we add the Page Faul time */
                             smallest = counter;   /* We look for the frame with the smallest LRU time or with a time of 0 */
-                            for (i = 0; i < frameSize; i++)
+                           for(i=0;i<frameSize;i++)
                             {
                                 if (frame[i][2] == 0)
                                 {
@@ -236,21 +236,21 @@ int main(int argc, const char *argv[])
                                     frameN = i;
                                 }
                             }
-                            if (frame[frameN][1] == 1) /* In case the frame is dirty we do a page out */
+                             if(frame[frameN][1]==1) /* In case the frame is dirty we do a page out */
                             {
                                 accessTime += tfault;
                                 pageOut++;
                             }
                             pageIn++;                           /* Page Ins is incremented */
-                            pageTable[frame[frameN][0]][1] = 0; /* We set the old page entry to invalid */
-                            frame[frameN][0] = pageEntry;       /* The new page is set to the frame */
-                            frame[frameN][1] = 0;               /* The dirty bit is set to 0 */
-                            pageTable[pageEntry][0] = frameN;   /* The page table is updated with the new frame */
-                            pageTable[pageEntry][1] = 1;        /* The page table is updated with a valid bit */
-                            tlbn = getTLB(tlb, TLBSIZE);        /* We update the TLB table with the new page/frame entry */
-                            tlb[tlbn][0] = pageEntry;
-                            tlb[tlbn][1] = frameN;
-                            tlb[tlbn][2] = counter;
+                            pageTable[frame[frameN][0]][1]=0;   /* We set the old page entry to invalid */
+                            frame[frameN][0]=pageEntry;         /* The new page is set to the frame */
+                            frame[frameN][1]=0;                 /* The dirty bit is set to 0 */
+                            pageTable[pageEntry][0]=frameN;     /* The page table is updated with the new frame */
+                            pageTable[pageEntry][1]=1;          /* The page table is updated with a valid bit */
+                             tlbn=getTLB(tlb,TLBSIZE);          /* We update the TLB table with the new page/frame entry */
+                            tlb[tlbn][0]=pageEntry;
+                            tlb[tlbn][1]=frameN;
+                            tlb[tlbn][2]=counter;
                         }
                     }
                 if (operation == 'W') /* In case the operation is a Wtrite we set the bit to dirty */
@@ -263,7 +263,7 @@ int main(int argc, const char *argv[])
                 sum += accessTime;          /* The total access time of all the request is updated */
 
 #ifdef DEBUG /* Information about the Memory Request is printed */
-                    printf("Number: &d\n", address);
+                    printf("Number: %d\n", address);
                     printf("Operation: %c\n", operation);
                     printf("Binary: %s\n", caddress);
                     printf("Page Entry: %d\n", pageEntry);
@@ -276,7 +276,7 @@ int main(int argc, const char *argv[])
                 }
                 for (i = 0; i < TLBSIZE; i++)
                 {
-                    printf("Page: %d Frame: %d LRU: %d\n", tlb[i][0], tlb[i][1], tlbi][2]);
+                    printf("Page: %d Frame: %d LRU: %d\n", tlb[i][0], tlb[i][1], tlb[i][2]);
                 }
 #endif
                 counter--; /* Counter has one more than actual events so we subtract one */
