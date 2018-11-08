@@ -8,7 +8,7 @@ The goal of this project is to implement a simulator for virtual memory manager.
 
 To verify you read all events in the trace it ir recommended that you also keep tract of the total number of events(memory accesses) in the trace.
 
----
+
 
 ## GOALS
 
