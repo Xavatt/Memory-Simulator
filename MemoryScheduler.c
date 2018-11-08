@@ -122,8 +122,8 @@ int main(int argc, const char *argv[])
 
 #ifdef DEBUG
                 /* In debug mode the number of entries is printed */
-                printf("%d Page Entries\n ", temp);
-                printf("%d Frame Entries\n ", temp);
+                printf("%d Page Entries\n ", tmem);
+                printf("%d Frame Entries\n ", tmem);
                 printf("%d TLB Entries\n ", TLBSIZE);
 #endif
 
