@@ -6,16 +6,16 @@
 /********************************************************
  *              Global Constant Values                  *
  ********************************************************/
-#define LOGADD 16  /* Constant used to define the logial address space */
-#define PHYADD 13  /* Constant used to define the physical address space */
-#define OFFSET 9   /* Constant used to define the offset used */
-#define TLBSIZE 8  /* Constant for the TLB size */
-#define NUMPARAMS 2 /* Constant used to define the number of parameters we must receive */
+#define LOGADD 16       /* Constant used to define the logial address space */
+#define PHYADD 13       /* Constant used to define the physical address space */
+#define OFFSET 9        /* Constant used to define the offset used */
+#define TLBSIZE 8       /* Constant for the TLB size */
+#define NUMPARAMS 2     /* Constant used to define the number of parameters we must receive */
 
 /* Used to get a number from a file passed as a parameter */
 int GetInt(FILE *fp)
 {
-    int c, i; /* Character read and integer representation of it */
+    int c, i; /* Character read and integer */
     int sign = 1;
     do
     {
@@ -50,12 +50,12 @@ int GetInt(FILE *fp)
     }
 }
 
-/* Get the smallest LRU time from an array passed as parameter */
+/* Get the smallest LRU time from an array */
 int getTLB(int tlb[][3], int size)
 {
     int i, tlbn;
     int smallest = tlb[0][2];  /* Get the first LRU from the first entry in the TLB */
-    for (i = 0; i < size; i++) /* The array is searched for lower LRU or LRU of zero */
+    for (i = 0; i < size; i++) /* The array is searched for lower LRU or LRU = zero */
     {
         if (tlb[i][2] == 0)
         {
@@ -68,7 +68,7 @@ int getTLB(int tlb[][3], int size)
             tlbn = i;
         }
     }
-    return tlbn; /* Return the index of the lowest LRU in the TLB */
+    return tlbn; /* Return the lowest LRU in the TLB */
 }
 
 /********************************************************
@@ -93,8 +93,8 @@ int main(int argc, const char *argv[])
     else
     {
         /* Open the file and check that it exist */
-        fp = fopen(argv[1], "r"); /* Open the file for read operation */
-        if (!fp)                  /* There is an error */
+        fp = fopen(argv[1], "r");       /* Open the file for read operation */
+        if (!fp)                        /* There is an error */
         {
             printf("%s\n", "ERROR 404 (FILE NOT FOUND)");
             return EXIT_FAILURE;
@@ -108,17 +108,17 @@ int main(int argc, const char *argv[])
 
             if (tmem == EXIT_FAILURE || ttlb == EXIT_FAILURE || tfault == EXIT_FAILURE) /* We check to see if we read succesfully the three times */
             {
-                printf("%s\n", "ERROR 404 (TIME NOT FOUND)"); /* In case of error we notify the user and terminate the program */
+                printf("%s\n", "ERROR 404 (TIME NOT FOUND)"); 
                 return EXIT_FAILURE;
             }
             else
             {
                 int pageSize,frameSize;              /* Variables declared that will hold the page and frame size or spaces */
                 pageSize = pow(2,LOGADD-OFFSET);     /* Page size is calculated */
-                int pageTable[pageSize][2];          /* Array is declared with the page size and 2 int spaces, one for the frame and the second for validity */
+                int pageTable[pageSize][2];          /* Array is declared with the page size and 2 spaces, one for the frame and the second for validity */
                 frameSize = pow(2,PHYADD-OFFSET);    /* Frame size is calculated */
-                int frame[frameSize][3];             /* Array is declared with the frame size and 3 int spaces */
-                                                     /* One is for the page entry, the second as a dirty bit, the third for the LRU time */
+                int frame[frameSize][3];             /* Array is declared with the frame size and 3 spaces One is for the page entry, the second as a dirty bit, the third for the LRU time */
+                                                     
 
 #ifdef DEBUG
                 /* In debug mode the number of entries is printed */
@@ -127,29 +127,30 @@ int main(int argc, const char *argv[])
                 printf("%d TLB Entries\n ", TLBSIZE);
 #endif
 
-                int tlb[TLBSIZE][3];                   /* TLB is declared with three int spaces, one for page entry, second for the frame and third for the LRU time */
+                int tlb[TLBSIZE][3];                   /* TLB is declared with three spaces, one for page entry, second for the frame and third for the LRU time */
                 int rem, n, i;                         /* Rem is the remainder used to convert to binary, n stores numeric value of the address and i is used for 'fors' */
                 int frameN, tlbn, pageEntry, smallest; /* Frame number, TLB number, Page Entry and Smallest LRU time */
                 double accessTime, sum;                /* Access Time of the current memory request and the sum of all the access time of memories request */
-                int counter = 1;                       /* Counter serves as a time counter */
+                int counter = 1;                       /* Serves as a time counter */
                 int hits = 0;                          /* Hits stores the number of TLB hits we have */
                 int pageOut = 0, pageIn = 0;           /* Page outs into disk and page ins from disk */
                 int found;                             /* Bool variable that is set to 1 if found */
 
-                for(i=0;i<pageSize;i++) /* We set the page table to neutral values */
+                /* We set the page table, frame table and TLB to neutral values */
+                for(i=0;i<pageSize;i++) 
                 {
                     pageTable[i][0] = 0;
                     pageTable[i][1] = 0;
                 }
 
-                for(i=0;i<frameSize;i++) /* We set the frame table to neutral values */
+                for(i=0;i<frameSize;i++) 
                 {
                     frame[i][0]=0;
                     frame[i][1]=0;
                     frame[i][2]=0;
                 }
 
-                for(i=0;i<TLBSIZE;i++) /* We set the TLB to neutral values */
+                for(i=0;i<TLBSIZE;i++) 
                 {
                    tlb[i][0]= -1;
                     tlb[i][1]=0;
@@ -157,7 +158,7 @@ int main(int argc, const char *argv[])
                 }
                 while (!feof(fp))
                 {
-                    /* Write the eof isn't reached */
+                    
                     fscanf(fp,"%x %c",&address,&operation); /* Address and Operation are read */
 
                     if (feof(fp)) /* If end of the file we break */
@@ -169,7 +170,7 @@ int main(int argc, const char *argv[])
                     frameN = 0;     /* Frame Number is reset */
                     n = address;    /* Numeric value is passed to n */
 
-                    for(i = LOGADD;i>0;i--) /* We convert the address read to a String representation binary */
+                    for(i = LOGADD;i>0;i--) /* We convert the address read to a String */
                     {
                         rem = n%2;
                         n = n/2;
@@ -183,7 +184,7 @@ int main(int argc, const char *argv[])
                         }
                     }
 
-                    for(i = LOGADD-OFFSET;i>0;i--) /* The page entry is calculated based on the conversion made before */
+                    for(i = LOGADD-OFFSET;i>0;i--) /* The page entry is calculated */
                     {
                         int num = LOGADD-OFFSET-i;
                         if(caddress[i-1] == '1')
@@ -221,7 +222,7 @@ int main(int argc, const char *argv[])
                         }
                         else
                         {
-                            accessTime += tfault; /* No valid frame found so we add the Page Faul time */
+                            accessTime += tfault; /* No valid frame found  */
                             smallest = counter;   /* We look for the frame with the smallest LRU time or with a time of 0 */
                            for(i=0;i<frameSize;i++)
                             {
@@ -241,7 +242,7 @@ int main(int argc, const char *argv[])
                                 accessTime += tfault;
                                 pageOut++;
                             }
-                            pageIn++;                           /* Page Ins is incremented */
+                            pageIn++;                           
                             pageTable[frame[frameN][0]][1]=0;   /* We set the old page entry to invalid */
                             frame[frameN][0]=pageEntry;         /* The new page is set to the frame */
                             frame[frameN][1]=0;                 /* The dirty bit is set to 0 */
@@ -259,7 +260,7 @@ int main(int argc, const char *argv[])
                 }
 
                 frame[frameN][2] = counter; /* The LRU time for the frame is set */
-                counter++;                  /* Counter is incrased */
+                counter++;                  
                 sum += accessTime;          /* The total access time of all the request is updated */
 
 #ifdef DEBUG /* Information about the Memory Request is printed */
@@ -279,7 +280,7 @@ int main(int argc, const char *argv[])
                     printf("Page: %d Frame: %d LRU: %d\n", tlb[i][0], tlb[i][1], tlb[i][2]);
                 }
 #endif
-                counter--; /* Counter has one more than actual events so we subtract one */
+                counter--; 
                 /* The information required is displayed */
                 printf("Number of events: %d\n", counter);
                 printf("Average Acces Time: %f\n", sum / (double)counter);
@@ -288,7 +289,7 @@ int main(int argc, const char *argv[])
                 printf("TLB Hit Ratio: %f\n", (float)hits / (counter));
             }
         }
-        /* Program terminated Succesfully */
+        
         printf("Program Terminated Correctly\n");
         return (EXIT_SUCCESS);
     }
