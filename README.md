@@ -14,7 +14,7 @@ The implementation of the virtual memory simulator will test your comprehension 
 
 ## PROBLEM STATEMENT
 
-We are required to implement a *virtual memory simulator* for a system with 16-bit virtual addresses (64Kbytes total) and 8Kbytes of physical memory. Futthermore, assume that the pages and frames are 512-bytes each. To reduce the access time the system has an 8-entry TLB. The TLB uses the Least Recently Used (LRU) replacement policy to evict entries. To
+We are required to implement a *virtual memory simulator* for a system with 16-bit virtual addresses (64 Kbytes total) and 8 Kbytes of physical memory. Furthermore, assume that the pages and frames are 512-bytes each. To reduce the access time the system has an 8-entry TLB. The TLB uses the Least Recently Used (LRU) replacement policy to evict entries. To
 simplify your implementation you can use a single-level page table for the virtual to physical
 address translation. Given the previous conditions your system will have 128 entries in the
 page table and a total of 16 frames in memory.
@@ -26,7 +26,7 @@ memory. Of course, if the frame to be replaced is dirty, it must be saved to dis
 new frame is loaded into memory from disk, and the page table is updated.
 
 Our program will take as input a text file with an **arbitrary** number of memory references.
-The first line in the file has the main memory access time (**tmem**), the TLB access time (**ttlb**), and the page fault penalty (**tfault**). All times are in nano seconds. After the first line, each line will have a 16-bit address followed by the access type (read or write). As an example consider the following four memory references:
+The first line in the file has the main memory access time (**tmem**), the TLB access time (**ttlb**), and the page fault penalty (**tfault**). All times are in nanoseconds. After the first line, each line will have a 16-bit address followed by the access type (read or write). As an example consider the following four memory references:
 
 ![captura](https://user-images.githubusercontent.com/15019106/47720961-b477b200-dc14-11e8-9851-51961227f93f.PNG)
 
