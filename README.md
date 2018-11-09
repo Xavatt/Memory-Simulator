@@ -48,7 +48,7 @@ The simulator reports the TLB hit rate, the page faults in the form of disk read
 total number of memory frames used, and the average access time for the entire trace. Note
 that the final trace is over 1,000,000 entries long so you will be provided with a smaller trace for testing purposes.
 
-**HERE IS A SCREEN OF THE EXPECTEC RESULTS OF THE TEST.TXT FILE**
+**HERE IS A SCREEN OF THE EXPECTED RESULTS OF THE TEST.TXT FILE**
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48237134-f8905280-e38a-11e8-9326-53f22798c9e6.png)
 
@@ -56,7 +56,7 @@ that the final trace is over 1,000,000 entries long so you will be provided with
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48237199-32f9ef80-e38b-11e8-86c4-2be284af5974.png)
 
-**HERE IS A SCREEN OF THE EXPECTEC RESULTS OF THE TEST2.TXT FILE**
+**HERE IS A SCREEN OF THE EXPECTED RESULTS OF THE TEST2.TXT FILE**
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48237235-56bd3580-e38b-11e8-896f-b125b107ef64.png)
 
