@@ -1,399 +1,200 @@
 100 10 10000
-
 43a0 R
-
 8d40 R
-
 8d60 R
-
 43c0 R
-
 3360 R
-
 e308 R
-
 3380 R
-
 e2f0 R
-
 33a0 R
-
 33c0 R
-
 ccb0 R
-
 33e0 R
-
 3400 R
-
 ccc0 R
-
 3420 R
-
 a980 R
-
 a968 R
-
 3440 R
-
 3460 R
-
 4730 R
-
 4740 R
-
 4760 R
-
 4780 R
-
 a858 R
-
 a840 W
-
 47a0 R
-
 a868 R
-
 47c0 R
-
 c3c0 R
-
 16e8 R
-
 1700 R
-
 5ca8 R
-
 a958 R
-
 47e0 R
-
 1720 R
-
 1740 R
-
 c9c0 R
-
 4800 R
-
 13e0 R
-
 1402 R
-
 5d90 R
-
 a9a0 R
-
 1420 R
-
 5a48 R
-
 5a61 R
-
 5a80 R
-
 0f88 R
-
 0fa0 R
-
 0fc0 R
-
 0fc0 W
-
 0fe0 R
-
 1000 R
-
 1020 R
-
 10a8 R
-
 10c0 R
-
 5aa0 R
-
 8520 R
-
 5ac0 R
-
 8518 R
-
 5d10 R
-
 1440 R
-
 1460 R
-
 1480 R
-
 5c90 R
-
 14a0 R
-
 40b8 R
-
 9be8 R
-
 9c00 R
-
 9c20 R
-
 a6d8 R
-
 a6e0 R
-
 9c40 R
-
 0b98 R
-
 9c60 R
-
 9c80 R
-
 0ba0 R
-
 9ca0 R
-
 03d0 W
-
 03d0 W
-
 9da4 R
-
 9dc0 R
-
 4820 R
-
 4840 R
-
 4860 R
-
 4880 R
-
 48b0 R
-
 48c0 R
-
 4960 R
-
 4980 R
-
 49a0 R
-
 49c0 R
-
 bc00 W
-
 49e0 R
-
 bc00 W
-
 bc00 W
-
 bc08 W
-
 bc08 W
-
 bc08 W
-
 bc08 W
-
 bc10 W
-
 bc10 W
-
 bc10 W
-
 bc10 W
-
 bc18 W
-
 bc18 W
-
 bc18 W
-
 bc18 W
-
 bc20 W
-
 bc20 W
-
 bc20 W
-
 bc20 W
-
 bc28 W
-
 bc28 W
-
 bc28 W
-
 bc28 W
-
 bc30 W
-
 bc30 W
-
 bc30 W
-
 bc30 W
-
 bc38 W
-
 bc38 W
-
 bc38 W
-
 bc38 W
-
 bc40 W
-
 bc40 W
-
 bc40 W
-
 48e0 R
-
 aaf8 R
-
 ab00 R
-
 ab20 R
-
 4900 R
-
 4920 R
-
 4940 R
-
 1fa8 R
-
 1fc0 R
-
 1fe0 R
-
 0850 R
-
 0860 R
-
 0880 R
-
 08a0 R
-
 08c0 R
-
 08e0 R
-
 08e0 W
-
 a8f0 R
-
 a900 R
-
 a920 R
-
 a940 R
-
 a940 W
-
 a960 R
-
 a980 R
-
 a9a0 R
-
 a9c0 R
-
 a9c0 W
-
 a9e0 R
-
 aa00 R
-
 bca0 W
-
 aa20 R
-
 bca2 W
-
 bca0 W
-
 bca0 W
-
 bca8 W
-
 bca8 W
-
 bca8 W
-
 bca8 W
-
 bcb0 W
-
 bcb0 W
-
 bcb0 W
-
 bcb0 W
-
 bcb8 W
-
 bcb8 W
-
 bcb8 W
-
 bcb8 W
-
 bcc0 W
-
 bcc0 W
-
 bcc0 W
-
 bcc0 W
-
 bcc8 W
-
 bcc8 W
-
 bcc8 W
-
 bcc8 W
-
 bcd0 W
-
 bcd0 W
-
 bcd0 W
-
 bcd0 W
-
 bcd8 W
-
 bcd8 W
-
 bcd8 W
-
 bcd8 W
-
 bce0 W
-
 bce0 W
-
 bce0 W
-
 bce0 W
-
 bce8 W
-
 bce8 W
-
 bce8 W
-
 bce8 W
-
 bcf0 W
-
 bcf0 W
-
 bcf0 W
