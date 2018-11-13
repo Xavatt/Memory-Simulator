@@ -107,7 +107,16 @@ Finally, **To compile** the executable Schedler the following command is require
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48438961-ceec7800-e74a-11e8-8686-9d38acbe4c0e.png)
 
+**DEBUG MODE**
+
+![imagen](https://user-images.githubusercontent.com/15019106/48439420-d8c2ab00-e74b-11e8-9f6b-744d798beab2.png)
+
 **Here is a ScreenShot of the results for the 2nd test**
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48439027-fcd1bc80-e74a-11e8-8043-bd9081d56897.png)
+
+**DEBUG MODE**
+
+![imagen](https://user-images.githubusercontent.com/15019106/48439511-18899280-e74c-11e8-81e2-9f7bf8c1a8d1.png)
+
 
