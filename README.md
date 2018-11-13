@@ -97,7 +97,17 @@ Finally, **To compile** the executable Schedler the following command is require
     
     - Directory/folder$ ./memory test.txt
 
-**Here are a ScreenShoot to make it more visible.**
+**Here is a ScreenShot to make it more visible.**
 
 ![imagen](https://user-images.githubusercontent.com/15019106/48210478-fdc6b080-e33c-11e8-85af-3df1aed800e7.png)
+
+## FINAL RESULTS
+
+**Here is a ScreenShot of the results for the 1st test**
+
+![imagen](https://user-images.githubusercontent.com/15019106/48438961-ceec7800-e74a-11e8-8686-9d38acbe4c0e.png)
+
+**Here is a ScreenShot of the results for the 2nd test**
+
+![imagen](https://user-images.githubusercontent.com/15019106/48439027-fcd1bc80-e74a-11e8-8043-bd9081d56897.png)
 
