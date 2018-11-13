@@ -117,6 +117,4 @@ Finally, **To compile** the executable Schedler the following command is require
 
 **DEBUG MODE**
 
-![imagen](https://user-images.githubusercontent.com/15019106/48439511-18899280-e74c-11e8-81e2-9f7bf8c1a8d1.png)
-
-
+![imagen](https://user-images.githubusercontent.com/15019106/48439586-44a51380-e74c-11e8-845e-ae215cd0f52c.png)
